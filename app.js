@@ -15,17 +15,24 @@ const ItemGroupMatcher = () => {
     { id: 13, name: 'Scrappers', items: ['Powder', 'Trundle', 'Tristana', 'Gangplank', 'Corki', 'Ekko', 'Elise', 'Rumble'] }
   ];
 
+  const itemCategories = {
+  "1 Cost": ["Amumu", "Darius", "Draven", "Irelia", "Lux", "Maddie", "Morgana", "Powder", "Singed", "Steb", "Trundle", "Vex", "Violet", "Zyra"],
+  "2 Cost": ["Akali", "Camille", "Leona", "Nocturne", "Rell", "Renata Glasc", "Sett", "Tristana", "Urgot", "Vander", "Vladimir", "Zeri", "Ziggs"],
+  "3 Cost": ["Blitzcrank", "Cassiopeia", "Ezreal", "Gangplank", "KogMaw", "Loris", "Nami", "Nunu & Willump", "Renni", "Scar", "Smeech", "Swain", "Twisted Fate"],
+  "4 Cost": ["Ambessa", "Corki", "Dr. Mundo", "Ekko", "Elise", "Garen", "Heimerdinger", "Silco", "Illaoi", "Twitch", "Vi", "Zoe"],
+  "5 Cost": ["Caitlyn", "Jayce", "Jinx", "LeBlanc", "Malzahar", "Mordekaiser", "Sevika", "Rumble"]
+};
+  
   const [groups] = React.useState(initialGroups);
   const [selectedItems, setSelectedItems] = React.useState([]);
   const [matchingGroups, setMatchingGroups] = React.useState([]);
 
-  const getAllUniqueItems = () => {
-    const allItems = new Set();
-    groups.forEach(group => {
-      group.items.forEach(item => {
-        allItems.add(item);
-      });
-    });
+const getAllUniqueItems = () => {
+  return Object.entries(itemCategories).map(([category, items]) => ({
+    category,
+    items
+  }));
+};
     return Array.from(allItems).sort();
   };
 
@@ -55,21 +62,22 @@ const ItemGroupMatcher = () => {
   }, [selectedItems]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-4 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6 text-indigo-700 text-center">TFT Comp Search</h1>
-      <div className="mb-8 p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-semibold mb-4 text-gray-800">Select Units You Have</h2>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {allUniqueItems.map((item) => (
-            <button
-              key={item}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-                selectedItems.includes(item)
-                  ? 'bg-indigo-600 text-white hover:bg-indigo-700'
-                  : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-              }`}
-              onClick={() => toggleItem(item)}
-            >
+    <div className="p-4 max-w-4xl mx-auto">
+      <h1 className="text-2xl font-bold mb-6">TFT Comp Search</h1>
+      <div className="mb-8 p-4 bg-gray-50 rounded-lg">
+        <h2 className="text-xl font-semibold mb-2">Select Units You Have</h2>
+        {allCategorizedItems.map(({ category, items }) => (
+          <div key={category} className="mb-4">
+            <h3 className="font-semibold mb-2">{category}</h3>
+            <div className="flex flex-wrap gap-2">
+              {items.map((item) => (
+                <button
+                  key={item}
+                  className={`px-3 py-1 rounded-full text-sm ${
+                    selectedItems.includes(item) ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                  }`}
+                  onClick={() => toggleItem(item)}
+                >
               {item}
             </button>
           ))}
