@@ -27,16 +27,14 @@ const ItemGroupMatcher = () => {
   const [selectedItems, setSelectedItems] = React.useState([]);
   const [matchingGroups, setMatchingGroups] = React.useState([]);
 
-const getAllUniqueItems = () => {
-  return Object.entries(itemCategories).map(([category, items]) => ({
-    category,
-    items
-  }));
-};
-    return Array.from(allItems).sort();
+  const getAllUniqueItems = () => {
+    return Object.entries(itemCategories).map(([category, items]) => ({
+      category,
+      items
+    }));
   };
 
-  const allUniqueItems = getAllUniqueItems();
+  const allCategorizedItems = getAllUniqueItems();
 
   const toggleItem = (item) => {
     setSelectedItems(selectedItems.includes(item)
@@ -78,32 +76,30 @@ const getAllUniqueItems = () => {
                   }`}
                   onClick={() => toggleItem(item)}
                 >
-              {item}
-            </button>
-          ))}
-        </div>
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4 text-gray-800">Matching Groups</h2>
+        <h2 className="text-xl font-semibold mb-4">Matching Groups</h2>
         {matchingGroups.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {matchingGroups.map((result) => (
-              <div key={result.group.id} className="border rounded-lg p-4 bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
-                <h3 className="text-lg font-medium text-indigo-700">{result.group.name}</h3>
-                <p className="text-sm text-gray-600 mt-2">
-                  <span className="font-semibold">Matched:</span> {result.matchedItems.join(', ')}
-                </p>
-                <p className="text-sm text-red-600 mt-1">
-                  <span className="font-semibold">Missing:</span> {result.missingItems.join(', ')}
-                </p>
-                <span className="mt-2 inline-block bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-semibold">
+              <div key={result.group.id} className="border rounded-lg p-3 bg-white shadow-md">
+                <h3 className="text-lg font-medium">{result.group.name}</h3>
+                <p className="text-sm text-gray-600">Matched: {result.matchedItems.join(', ')}</p>
+                <p className="text-sm text-red-600">Missing: {result.missingItems.join(', ')}</p>
+                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
                   {result.matchPercentage.toFixed(0)}% Complete
                 </span>
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-gray-500 text-center">No matching groups found. Try selecting some items.</p>
+          <p className="text-gray-500">No matching groups found. Try selecting some items.</p>
         )}
       </div>
     </div>
