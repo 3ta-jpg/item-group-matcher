@@ -1,10 +1,10 @@
 const ItemGroupMatcher = () => {
   // Sample data structure for groups and their items - this would be managed on the backend
   const initialGroups = [
-    { id: 1, name: 'Breakfast Foods', items: ['Eggs', 'Bacon', 'Toast', 'Pancakes', 'Orange Juice'] },
-    { id: 2, name: 'Baking Essentials', items: ['Flour', 'Sugar', 'Eggs', 'Butter', 'Vanilla'] },
-    { id: 3, name: 'Italian Dinner', items: ['Pasta', 'Tomato Sauce', 'Garlic', 'Parmesan', 'Olive Oil'] },
-    { id: 4, name: 'Taco Night', items: ['Tortillas', 'Ground Beef', 'Cheese', 'Lettuce', 'Salsa'] }
+    { id: 1, name: 'Zeri Watchers', items: ['Amumu', 'Zeri', 'KogMaw', 'Scar', 'Ekko','Garen'] },
+    { id: 2, name: 'Twitch Experiment', items: ['Urgot', 'Nunu & Willump', 'Elise', 'Vi', 'Dr. Mundo','Twitch','Caitlyn','Mordekaiser'] },
+    { id: 3, name: 'Quickstrikers Reroll', items: ['Irelia', 'Akali', 'Nocturne', 'Rell', 'Loris', 'Twisted Fate', 'Illaoi'] },
+    { id: 4, name: 'Enforcers', items: ['Maddie', 'Steb', 'Camille', 'Loris', 'Twisted Fate', 'Illaoi', 'Vi', 'Caitlyn'] }
   ];
 
   const [groups] = React.useState(initialGroups);
