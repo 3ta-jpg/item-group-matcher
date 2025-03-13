@@ -12,7 +12,14 @@ const ItemGroupMatcher = () => {
     { id: 10, name: 'Renata', items: ['Singed', 'Irelia', 'Vex', 'Morgana', 'Renata Glasc', 'Rell', 'Illaoi'] },
     { id: 11, name: 'Tristana', items: ['Urgot', 'Tristana', 'Ezreal', 'Nami', 'Scar', 'Ambessa', 'Corki', 'Garen'] },
     { id: 12, name: 'Conqueror', items: ['Darius', 'Draven', 'Rell', 'Gangplank', 'Swain', 'Ambessa', 'Vi', 'Sevika', 'Mordekaiser'] },
-    { id: 13, name: 'Scrappers', items: ['Powder', 'Trundle', 'Tristana', 'Gangplank', 'Corki', 'Ekko', 'Elise', 'Rumble'] }
+    { id: 13, name: 'Scrappers', items: ['Powder', 'Trundle', 'Tristana', 'Gangplank', 'Corki', 'Ekko', 'Elise', 'Rumble'] },
+    { id: 14, name: 'Sentinel', items: ['Irelia', 'Leona', 'Rell', 'Loris', 'Ezreal', 'Corki', 'Heimerdinger', 'Illaoi', 'Rumble'] },
+    { id: 15, name: 'Visionary', items: ['Morgana', 'Vex', 'Rell', 'Renata Glasc', 'Nunu & Willump', 'Elise', 'Heimerdinger', 'Illaoi', 'Malzahar'] },
+    { id: 16, name: '4 Emisssary', items: ['Tristana', 'Nami', 'Twisted Fate', 'Swain', 'Gangplank', 'Garen', 'Ambessa', 'Corki'] },
+    { id: 17, name: 'Pit Fighter', items: ['Draven', 'Urgot', 'Elise', 'Swain', 'Gangplank', 'Vi', 'Sevika', 'Rumble'] },
+    { id: 18, name: 'Sorcerer', items: ['Lux', 'Zyra', 'Vladimir', 'Nami', 'Swain', 'Elise', 'Zoe', 'Leblanc'] },
+    { id: 19, name: 'Black Rose Visionary', items: ['Morgana', 'Vladimir', 'Nunu & Willump', 'Cassiopeia', 'Elise', 'Garen', 'Heimerdinger', 'LeBlanc', 'Malzahar'] },
+  
   ];
 
   const itemCategories = {
