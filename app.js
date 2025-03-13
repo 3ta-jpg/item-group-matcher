@@ -22,7 +22,6 @@ const ItemGroupMatcher = () => {
   "4 Cost": ["Ambessa", "Corki", "Dr. Mundo", "Ekko", "Elise", "Garen", "Heimerdinger", "Silco", "Illaoi", "Twitch", "Vi", "Zoe"],
   "5 Cost": ["Caitlyn", "Jayce", "Jinx", "LeBlanc", "Malzahar", "Mordekaiser", "Sevika", "Rumble"]
 };
-  
   const [groups] = React.useState(initialGroups);
   const [selectedItems, setSelectedItems] = React.useState([]);
   const [matchingGroups, setMatchingGroups] = React.useState([]);
@@ -60,47 +59,52 @@ const ItemGroupMatcher = () => {
   }, [selectedItems]);
 
   return (
-    <div className="p-4 max-w-4xl mx-auto">
+    <div className="p-4 max-w-5xl mx-auto">
       <h1 className="text-2xl font-bold mb-6">TFT Comp Search</h1>
-      <div className="mb-8 p-4 bg-gray-50 rounded-lg">
-        <h2 className="text-xl font-semibold mb-2">Select Units You Have</h2>
-        {allCategorizedItems.map(({ category, items }) => (
-          <div key={category} className="mb-4">
-            <h3 className="font-semibold mb-2">{category}</h3>
-            <div className="flex flex-wrap gap-2">
-              {items.map((item) => (
-                <button
-                  key={item}
-                  className={`px-3 py-1 rounded-full text-sm ${
-                    selectedItems.includes(item) ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
-                  }`}
-                  onClick={() => toggleItem(item)}
-                >
-                  {item}
-                </button>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Left Side: Matching Groups */}
+        <div className="space-y-4">
+          <h2 className="text-xl font-semibold mb-2">Matching Groups</h2>
+          {matchingGroups.length > 0 ? (
+            <div className="space-y-4">
+              {matchingGroups.map((result) => (
+                <div key={result.group.id} className="border rounded-lg p-3 bg-white shadow-md">
+                  <h3 className="text-lg font-medium">{result.group.name}</h3>
+                  <p className="text-sm text-gray-600">Matched: {result.matchedItems.join(', ')}</p>
+                  <p className="text-sm text-red-600">Missing: {result.missingItems.join(', ')}</p>
+                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    {result.matchPercentage.toFixed(0)}% Complete
+                  </span>
+                </div>
               ))}
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="mb-8">
-        <h2 className="text-xl font-semibold mb-4">Matching Groups</h2>
-        {matchingGroups.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {matchingGroups.map((result) => (
-              <div key={result.group.id} className="border rounded-lg p-3 bg-white shadow-md">
-                <h3 className="text-lg font-medium">{result.group.name}</h3>
-                <p className="text-sm text-gray-600">Matched: {result.matchedItems.join(', ')}</p>
-                <p className="text-sm text-red-600">Missing: {result.missingItems.join(', ')}</p>
-                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                  {result.matchPercentage.toFixed(0)}% Complete
-                </span>
+          ) : (
+            <p className="text-gray-500">No matching groups found. Try selecting some items.</p>
+          )}
+        </div>
+
+        {/* Right Side: Selected Items */}
+        <div className="p-4 bg-gray-50 rounded-lg">
+          <h2 className="text-xl font-semibold mb-2">Select Units You Have</h2>
+          {allCategorizedItems.map(({ category, items }) => (
+            <div key={category} className="mb-4">
+              <h3 className="font-semibold mb-2">{category}</h3>
+              <div className="flex flex-wrap gap-2">
+                {items.map((item) => (
+                  <button
+                    key={item}
+                    className={`px-3 py-1 rounded-full text-sm ${
+                      selectedItems.includes(item) ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                    }`}
+                    onClick={() => toggleItem(item)}
+                  >
+                    {item}
+                  </button>
+                ))}
               </div>
-            ))}
-          </div>
-        ) : (
-          <p className="text-gray-500">No matching groups found. Try selecting some items.</p>
-        )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
