@@ -66,7 +66,22 @@ const ItemGroupMatcher = () => {
     findMatchingGroups();
   }, [selectedItems]);
 
-return (
+  const renderItem = (item) => {
+    if (item.endsWith('***')) {
+      const itemName = item.slice(0, -3);
+      return (
+        <span>{itemName}<span className="text-green-500">***</span></span>
+      );
+    } else if (item.endsWith('**')) {
+      const itemName = item.slice(0, -2);
+      return (
+        <span>{itemName}<span className="text-yellow-500">**</span></span>
+      );
+    }
+    return item;
+  };
+
+  return (
     <div className="p-4 max-w-5xl mx-auto">
       <h1 className="text-2xl font-bold mb-6">TFT Comp Search</h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
