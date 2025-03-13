@@ -57,9 +57,9 @@ const ItemGroupMatcher = () => {
 
   return (
     <div className="p-4 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Item Group Matcher</h1>
+      <h1 className="text-2xl font-bold mb-6">TFT Comp Search</h1>
       <div className="mb-8 p-4 bg-gray-50 rounded-lg">
-        <h2 className="text-xl font-semibold mb-2">Select Items You Have</h2>
+        <h2 className="text-xl font-semibold mb-2">Select Units You Have</h2>
         <div className="flex flex-wrap gap-2 mb-4">
           {allUniqueItems.map((item) => (
             <button
