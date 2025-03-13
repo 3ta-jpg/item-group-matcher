@@ -65,10 +65,20 @@ const ItemGroupMatcher = () => {
   React.useEffect(() => {
     findMatchingGroups();
   }, [selectedItems]);
+  return (
+    <TFTCompSearch
+      allCategorizedItems={allCategorizedItems}
+      selectedItems={selectedItems}
+      matchingGroups={matchingGroups}
+      toggleItem={toggleItem}
+    />
+  );
+};
 
 const TFTCompSearch = ({ allCategorizedItems, selectedItems, matchingGroups, toggleItem }) => {
   return (
     <div className="bg-gray-900 text-gray-100 min-h-screen p-4 max-w-5xl mx-auto">
+      {/* ... (your TFTCompSearch component code) */}
       <h1 className="text-3xl font-bold mb-6 text-purple-400">TFT Comp Search</h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Right Side: Selected Items */}
