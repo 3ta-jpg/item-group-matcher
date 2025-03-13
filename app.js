@@ -1,5 +1,5 @@
 const ItemGroupMatcher = () => {
-  // Sample data structure for groups and their items
+  // Sample data structure for groups and their items - this would be managed on the backend
   const initialGroups = [
     { id: 1, name: 'Breakfast Foods', items: ['Eggs', 'Bacon', 'Toast', 'Pancakes', 'Orange Juice'] },
     { id: 2, name: 'Baking Essentials', items: ['Flour', 'Sugar', 'Eggs', 'Butter', 'Vanilla'] },
@@ -7,11 +7,9 @@ const ItemGroupMatcher = () => {
     { id: 4, name: 'Taco Night', items: ['Tortillas', 'Ground Beef', 'Cheese', 'Lettuce', 'Salsa'] }
   ];
 
-  const [groups, setGroups] = React.useState(initialGroups);
+  const [groups] = React.useState(initialGroups);
   const [selectedItems, setSelectedItems] = React.useState([]);
   const [matchingGroups, setMatchingGroups] = React.useState([]);
-  const [newGroupName, setNewGroupName] = React.useState('');
-  const [newGroupItems, setNewGroupItems] = React.useState('');
 
   // Get unique items from all groups
   const getAllUniqueItems = () => {
@@ -24,7 +22,7 @@ const ItemGroupMatcher = () => {
     return Array.from(allItems).sort();
   };
 
-  const allItems = getAllUniqueItems();
+  const allUniqueItems = getAllUniqueItems();
 
   // Toggle selected item
   const toggleItem = (item) => {
@@ -41,15 +39,11 @@ const ItemGroupMatcher = () => {
     
     const results = groups.map(group => {
       const matchedItems = selectedItems.filter(item => 
-        group.items.some(groupItem => 
-          groupItem.toLowerCase() === item.toLowerCase()
-        )
+        group.items.includes(item)
       );
       
       const missingItems = group.items.filter(groupItem => 
-        !selectedItems.some(item => 
-          item.toLowerCase() === groupItem.toLowerCase()
-        )
+        !selectedItems.includes(groupItem)
       );
       
       const matchPercentage = (matchedItems.length / group.items.length) * 100;
@@ -69,24 +63,10 @@ const ItemGroupMatcher = () => {
     setMatchingGroups(matching);
   };
 
-  // Add a new group
-  const addNewGroup = () => {
-    if (newGroupName.trim() === '' || newGroupItems.trim() === '') return;
-    
-    const items = newGroupItems.split(',').map(item => item.trim()).filter(item => item !== '');
-    
-    if (items.length === 0) return;
-    
-    const newGroup = {
-      id: groups.length + 1,
-      name: newGroupName,
-      items: items
-    };
-    
-    setGroups([...groups, newGroup]);
-    setNewGroupName('');
-    setNewGroupItems('');
-  };
+  // Find matches automatically when selections change
+  React.useEffect(() => {
+    findMatchingGroups();
+  }, [selectedItems]);
 
   return (
     <div className="p-4 max-w-4xl mx-auto">
@@ -97,7 +77,7 @@ const ItemGroupMatcher = () => {
         <h2 className="text-xl font-semibold mb-2">Select Items You Have</h2>
         <div className="mb-4">
           <div className="flex flex-wrap gap-2 mb-4">
-            {allItems.map((item) => (
+            {allUniqueItems.map((item) => (
               <button
                 key={item}
                 className={`px-3 py-1 rounded-full text-sm ${
@@ -117,22 +97,13 @@ const ItemGroupMatcher = () => {
               {selectedItems.length > 0 ? selectedItems.join(', ') : 'No items selected'}
             </p>
           </div>
-          <div className="mt-4">
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-              onClick={findMatchingGroups}
-              disabled={selectedItems.length === 0}
-            >
-              Find Matches
-            </button>
-          </div>
         </div>
       </div>
       
       {/* Results section */}
-      {matchingGroups.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-4">Matching Groups</h2>
+      <div className="mb-8">
+        <h2 className="text-xl font-semibold mb-4">Matching Groups</h2>
+        {matchingGroups.length > 0 ? (
           <div className="space-y-4">
             {matchingGroups.map((result) => (
               <div key={result.group.id} className="border rounded-lg p-4">
@@ -153,45 +124,14 @@ const ItemGroupMatcher = () => {
               </div>
             ))}
           </div>
-        </div>
-      )}
-      
-      {/* Add new group section */}
-      <div className="p-4 bg-gray-50 rounded-lg">
-        <h2 className="text-xl font-semibold mb-4">Add New Group</h2>
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-1">Group Name</label>
-            <input
-              type="text"
-              className="border rounded p-2 w-full"
-              placeholder="E.g., Smoothie Ingredients"
-              value={newGroupName}
-              onChange={(e) => setNewGroupName(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Items (comma separated)</label>
-            <textarea
-              className="border rounded p-2 w-full"
-              placeholder="E.g., Banana, Yogurt, Berries, Honey, Ice"
-              value={newGroupItems}
-              onChange={(e) => setNewGroupItems(e.target.value)}
-              rows={2}
-            />
-          </div>
-          <button
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-            onClick={addNewGroup}
-          >
-            Add Group
-          </button>
-        </div>
+        ) : (
+          <p className="text-gray-500">No matching groups found. Try selecting some items.</p>
+        )}
       </div>
       
       {/* All groups section */}
       <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">All Groups</h2>
+        <h2 className="text-xl font-semibold mb-4">All Available Groups</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {groups.map((group) => (
             <div key={group.id} className="border p-3 rounded-lg">
