@@ -16,12 +16,13 @@ const ItemGroupMatcher = () => {
   ];
 
   const itemCategories = {
-  "1 Cost": ["Amumu", "Darius", "Draven", "Irelia", "Lux", "Maddie", "Morgana", "Powder", "Singed", "Steb", "Trundle", "Vex", "Violet", "Zyra"],
-  "2 Cost": ["Akali", "Camille", "Leona", "Nocturne", "Rell", "Renata Glasc", "Sett", "Tristana", "Urgot", "Vander", "Vladimir", "Zeri", "Ziggs"],
-  "3 Cost": ["Blitzcrank", "Cassiopeia", "Ezreal", "Gangplank", "KogMaw", "Loris", "Nami", "Nunu & Willump", "Renni", "Scar", "Smeech", "Swain", "Twisted Fate"],
-  "4 Cost": ["Ambessa", "Corki", "Dr. Mundo", "Ekko", "Elise", "Garen", "Heimerdinger", "Silco", "Illaoi", "Twitch", "Vi", "Zoe"],
-  "5 Cost": ["Caitlyn", "Jayce", "Jinx", "LeBlanc", "Malzahar", "Mordekaiser", "Sevika", "Rumble"]
-};
+    "Carriers": ["Zeri", "KogMaw", "Twitch", "Caitlyn", "Jinx", "Tristana", "Ezreal", "Corki"],
+    "Tanks/Bruisers": ["Amumu", "Urgot", "Nunu & Willump", "Dr. Mundo", "Garen", "Singed", "Trundle", "Darius", "Sett", "Rell", "Camille", "Vander", "Vi", "Mordekaiser"],
+    "Assassins/Skirmishers": ["Akali", "Nocturne", "Irelia", "Ekko", "Powder", "Violet", "Scar", "Draven", "Sevika"],
+    "Mages/Utility": ["Morgana", "Vladimir", "Cassiopeia", "Silco", "LeBlanc", "Viktor", "Zoe", "Twisted Fate", "Illaoi", "Renata Glasc", "Vex", "Nami", "Renni"],
+    "Unique/Other": ["Elise", "Loris", "Maddie", "Steb", "Smeech", "Ambessa", "Gangplank", "Rumble"]
+  };
+
   const [groups] = React.useState(initialGroups);
   const [selectedItems, setSelectedItems] = React.useState([]);
   const [matchingGroups, setMatchingGroups] = React.useState([]);
@@ -62,28 +63,7 @@ const ItemGroupMatcher = () => {
     <div className="p-4 max-w-5xl mx-auto">
       <h1 className="text-2xl font-bold mb-6">TFT Comp Search</h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Left Side: Matching Groups */}
-        <div className="space-y-4">
-          <h2 className="text-xl font-semibold mb-2">Matching Groups</h2>
-          {matchingGroups.length > 0 ? (
-            <div className="space-y-4">
-              {matchingGroups.map((result) => (
-                <div key={result.group.id} className="border rounded-lg p-3 bg-white shadow-md">
-                  <h3 className="text-lg font-medium">{result.group.name}</h3>
-                  <p className="text-sm text-gray-600">Matched: {result.matchedItems.join(', ')}</p>
-                  <p className="text-sm text-red-600">Missing: {result.missingItems.join(', ')}</p>
-                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                    {result.matchPercentage.toFixed(0)}% Complete
-                  </span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-gray-500">No matching groups found. Try selecting some items.</p>
-          )}
-        </div>
-
-        {/* Right Side: Selected Items */}
+        {/* Right Side: Selected Items (Now on the Left) */}
         <div className="p-4 bg-gray-50 rounded-lg">
           <h2 className="text-xl font-semibold mb-2">Select Units You Have</h2>
           {allCategorizedItems.map(({ category, items }) => (
@@ -104,6 +84,27 @@ const ItemGroupMatcher = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Left Side: Matching Groups (Now on the Right) */}
+        <div className="space-y-4">
+          <h2 className="text-xl font-semibold mb-2">Matching Groups</h2>
+          {matchingGroups.length > 0 ? (
+            <div className="space-y-4">
+              {matchingGroups.map((result) => (
+                <div key={result.group.id} className="border rounded-lg p-3 bg-white shadow-md">
+                  <h3 className="text-lg font-medium">{result.group.name}</h3>
+                  <p className="text-sm text-gray-600">Matched: {result.matchedItems.join(', ')}</p>
+                  <p className="text-sm text-red-600">Missing: {result.missingItems.join(', ')}</p>
+                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    {result.matchPercentage.toFixed(0)}% Complete
+                  </span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-gray-500">No matching groups found. Try selecting some items.</p>
+          )}
         </div>
       </div>
     </div>
