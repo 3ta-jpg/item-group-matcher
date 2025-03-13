@@ -16,12 +16,12 @@ const ItemGroupMatcher = () => {
   ];
 
   const itemCategories = {
-    "Carriers": ["Zeri", "KogMaw", "Twitch", "Caitlyn", "Jinx", "Tristana", "Ezreal", "Corki"],
-    "Tanks/Bruisers": ["Amumu", "Urgot", "Nunu & Willump", "Dr. Mundo", "Garen", "Singed", "Trundle", "Darius", "Sett", "Rell", "Camille", "Vander", "Vi", "Mordekaiser"],
-    "Assassins/Skirmishers": ["Akali", "Nocturne", "Irelia", "Ekko", "Powder", "Violet", "Scar", "Draven", "Sevika"],
-    "Mages/Utility": ["Morgana", "Vladimir", "Cassiopeia", "Silco", "LeBlanc", "Viktor", "Zoe", "Twisted Fate", "Illaoi", "Renata Glasc", "Vex", "Nami", "Renni"],
-    "Unique/Other": ["Elise", "Loris", "Maddie", "Steb", "Smeech", "Ambessa", "Gangplank", "Rumble"]
-  };
+   "1 Cost": ["Amumu", "Darius", "Draven", "Irelia", "Lux", "Maddie", "Morgana", "Powder", "Singed", "Steb", "Trundle", "Vex", "Violet", "Zyra"],
+   "2 Cost": ["Akali", "Camille", "Leona", "Nocturne", "Rell", "Renata Glasc", "Sett", "Tristana", "Urgot", "Vander", "Vladimir", "Zeri", "Ziggs"],
+   "3 Cost": ["Blitzcrank", "Cassiopeia", "Ezreal", "Gangplank", "KogMaw", "Loris", "Nami", "Nunu & Willump", "Renni", "Scar", "Smeech", "Swain", "Twisted Fate"],
+   "4 Cost": ["Ambessa", "Corki", "Dr. Mundo", "Ekko", "Elise", "Garen", "Heimerdinger", "Silco", "Illaoi", "Twitch", "Vi", "Zoe"],
+   "5 Cost": ["Caitlyn", "Jayce", "Jinx", "LeBlanc", "Malzahar", "Mordekaiser", "Sevika", "Rumble"]
+ };
 
   const [groups] = React.useState(initialGroups);
   const [selectedItems, setSelectedItems] = React.useState([]);
