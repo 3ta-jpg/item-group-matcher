@@ -1,23 +1,23 @@
 const ItemGroupMatcher = () => {
   const initialGroups = [
-    { id: 1, name: 'Zeri Watchers', items: ['Amumu', 'Zeri***', 'KogMaw', 'Scar***', 'Ekko', 'Garen**', 'Vander***'] },
-    { id: 2, name: 'Twitch Experiment', items: ['Urgot', 'Nunu & Willump', 'Elise', 'Vi', 'Dr. Mundo**', 'Twitch**', 'Caitlyn', 'Mordekaiser'] },
-    { id: 3, name: 'Quickstrikers Reroll', items: ['Irelia', 'Akali***', 'Nocturne***', 'Rell', 'Loris***', 'Twisted Fate', 'Illaoi', 'Ambessa**'] },
-    { id: 4, name: 'Enforcers', items: ['Maddie', 'Steb', 'Camille', 'Loris', 'Twisted Fate', 'Illaoi**', 'Vi**', 'Caitlyn**'] },
-    { id: 5, name: 'Family', items: ['Draven***', 'Violet***', 'Powder***', 'Darius***', 'Urgot', 'Vander***', 'Vi', 'Gangplank', 'Sevika'] },
-    { id: 6, name: 'Chem Barons', items: ['Singed', 'Renata Glasc', 'Smeech', 'Renni', 'Nunu & Willump', 'Silco**', 'Dr. Mundo**', 'Twitch', 'Sevika'] },
-    { id: 7, name: 'Ambusher', items: ['Powder***', 'Violet', 'Camille***', 'Vander***', 'Smeech', 'Scar', 'Ekko', 'Jinx'] },
-    { id: 8, name: 'Black Rose', items: ['Morgana', 'Vladimir', 'Cassiopeia', 'Nunu & Willump', 'Elise', 'Silco**', 'Dr. Mundo**', 'LeBlanc', 'Mordekaiser'] },
-    { id: 9, name: 'Rebels', items: ['Irelia', 'Akali', 'Sett', 'Ezreal', 'Zoe**', 'Illaoi**', 'Jinx**', 'LebBlanc', 'Viktor'] },
+    { id: 1, name: 'Zeri Watchers', items: ['Amumu', 'Zeri', 'KogMaw', 'Scar', 'Ekko', 'Garen'] },
+    { id: 2, name: 'Twitch Experiment', items: ['Urgot', 'Nunu & Willump', 'Elise', 'Vi', 'Dr. Mundo', 'Twitch', 'Caitlyn', 'Mordekaiser'] },
+    { id: 3, name: 'Quickstrikers Reroll', items: ['Irelia', 'Akali', 'Nocturne', 'Rell', 'Loris', 'Twisted Fate', 'Illaoi'] },
+    { id: 4, name: 'Enforcers', items: ['Maddie', 'Steb', 'Camille', 'Loris', 'Twisted Fate', 'Illaoi', 'Vi', 'Caitlyn'] },
+    { id: 5, name: 'Family', items: ['Draven', 'Violet', 'Powder', 'Darius', 'Urgot', 'Vander', 'Vi', 'Gangplank', 'Sevika'] },
+    { id: 6, name: 'Chem Barons', items: ['Singed', 'Renata Glasc', 'Smeech', 'Renni', 'Nunu & Willump', 'Silcoo', 'Dr. Mundo', 'Twitch', 'Sevika'] },
+    { id: 7, name: 'Ambusher', items: ['Powder', 'Violet', 'Camille', 'Vander', 'Smeech', 'Scar', 'Ekko', 'Jinx'] },
+    { id: 8, name: 'Black Rose', items: ['Morgana', 'Vladimir', 'Cassiopeia', 'Nunu & Willump', 'Elise', 'Silco', 'Dr. Mundo', 'LeBlanc', 'Mordekaiser'] },
+    { id: 9, name: 'Rebels', items: ['Irelia', 'Akali', 'Sett', 'Ezreal', 'Zoe', 'Illaoi', 'Jinx', 'LebBlanc', 'Viktor'] },
     { id: 10, name: 'Renata', items: ['Singed', 'Irelia', 'Vex', 'Morgana', 'Renata Glasc', 'Rell', 'Illaoi'] },
-    { id: 11, name: 'Tristana', items: ['Urgot', 'Tristana***', 'Ezreal', 'Nami', 'Scar', 'Ambessa', 'Corki**', 'Garen**'] },
-    { id: 12, name: 'Conqueror', items: ['Darius', 'Draven', 'Rell', 'Gangplank', 'Swain**', 'Ambessa**', 'Vi', 'Sevika', 'Mordekaiser**'] },
-    { id: 13, name: 'Scrappers', items: ['Powder', 'Trundle', 'Tristana', 'Gangplank***', 'Corki**', 'Ekko**', 'Elise', 'Rumble'] },
-    { id: 14, name: 'Sentinel', items: ['Irelia', 'Leona', 'Rell', 'Loris', 'Ezreal', 'Corki**', 'Heimerdinger**', 'Illaoi**', 'Rumble'] },
-    { id: 15, name: 'Visionary', items: ['Morgana', 'Vex', 'Rell', 'Renata Glasc', 'Nunu & Willump', 'Elise**', 'Heimerdinger**', 'Illaoi', 'Malzahar**'] },
-    { id: 16, name: '4 Emisssary', items: ['Tristana', 'Nami', 'Twisted Fate', 'Swain', 'Gangplank', 'Garen**', 'Ambessa**', 'Corki**'] },
-    { id: 17, name: 'Pit Fighter', items: ['Draven', 'Urgot', 'Elise**', 'Swain', 'Gangplank***', 'Vi**', 'Sevika**', 'Rumble'] },
-    { id: 18, name: 'Sorcerer', items: ['Lux', 'Zyra', 'Vladimir', 'Nami***', 'Swain***', 'Elise**', 'Zoe', 'Leblanc'] },
+    { id: 11, name: 'Tristana', items: ['Urgot', 'Tristana', 'Ezreal', 'Nami', 'Scar', 'Ambessa', 'Corki', 'Garen'] },
+    { id: 12, name: 'Conqueror', items: ['Darius', 'Draven', 'Rell', 'Gangplank', 'Swain', 'Ambessa', 'Vi', 'Sevika', 'Mordekaiser'] },
+    { id: 13, name: 'Scrappers', items: ['Powder', 'Trundle', 'Tristana', 'Gangplank', 'Corki', 'Ekko', 'Elise', 'Rumble'] },
+    { id: 14, name: 'Sentinel', items: ['Irelia', 'Leona', 'Rell', 'Loris', 'Ezreal', 'Corki', 'Heimerdinger', 'Illaoi', 'Rumble'] },
+    { id: 15, name: 'Visionary', items: ['Morgana', 'Vex', 'Rell', 'Renata Glasc', 'Nunu & Willump', 'Elise', 'Heimerdinger', 'Illaoi', 'Malzahar'] },
+    { id: 16, name: '4 Emisssary', items: ['Tristana', 'Nami', 'Twisted Fate', 'Swain', 'Gangplank', 'Garen', 'Ambessa', 'Corki'] },
+    { id: 17, name: 'Pit Fighter', items: ['Draven', 'Urgot', 'Elise', 'Swain', 'Gangplank', 'Vi', 'Sevika', 'Rumble'] },
+    { id: 18, name: 'Sorcerer', items: ['Lux', 'Zyra', 'Vladimir', 'Nami', 'Swain', 'Elise', 'Zoe', 'Leblanc'] },
     { id: 19, name: 'Black Rose Visionary', items: ['Morgana', 'Vladimir', 'Nunu & Willump', 'Cassiopeia', 'Elise', 'Garen', 'Heimerdinger', 'LeBlanc', 'Malzahar'] },
   
   ];
@@ -66,43 +66,29 @@ const ItemGroupMatcher = () => {
     findMatchingGroups();
   }, [selectedItems]);
 
-  const renderItem = (item) => {
-    if (item.endsWith('***')) {
-      const itemName = item.slice(0, -3);
-      return (
-        <span>{itemName}<span className="text-green-500">***</span></span>
-      );
-    } else if (item.endsWith('**')) {
-      const itemName = item.slice(0, -2);
-      return (
-        <span>{itemName}<span className="text-yellow-500">**</span></span>
-      );
-    }
-    return item;
-  };
-
+const TFTCompSearch = ({ allCategorizedItems, selectedItems, matchingGroups, toggleItem }) => {
   return (
-    <div className="p-4 max-w-5xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">TFT Comp Search</h1>
+    <div className="bg-gray-900 text-gray-100 min-h-screen p-4 max-w-5xl mx-auto">
+      <h1 className="text-3xl font-bold mb-6 text-purple-400">TFT Comp Search</h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Right Side: Selected Items (Now on the Left) */}
-        <div className="p-4 bg-gray-50 rounded-lg">
-          <h2 className="text-xl font-semibold mb-2">Select Units You Have</h2>
+        {/* Right Side: Selected Items */}
+        <div className="p-4 bg-gray-800 rounded-lg shadow-md">
+          <h2 className="text-xl font-semibold mb-2 text-blue-300">Select Units You Have</h2>
           {allCategorizedItems.map(({ category, items }) => (
             <div key={category} className="mb-4">
-              <h3 className="font-semibold mb-2">{category}</h3>
+              <h3 className="font-semibold mb-2 text-gray-300">{category}</h3>
               <div className="flex flex-wrap gap-2">
                 {items.map((item) => (
                   <button
                     key={item}
-                    className={`px-3 py-1 rounded-full text-sm ${
-                      selectedItems.includes(item.replace('**', '').replace('***', ''))
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-200 text-gray-800'
+                    className={`px-3 py-1 rounded-full text-sm transition-colors duration-200 ${
+                      selectedItems.includes(item)
+                        ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                        : 'bg-gray-700 hover:bg-gray-600 text-gray-300'
                     }`}
-                    onClick={() => toggleItem(item.replace('**', '').replace('***', ''))}
+                    onClick={() => toggleItem(item)}
                   >
-                    {renderItem(item)}
+                    {item}
                   </button>
                 ))}
               </div>
@@ -110,21 +96,17 @@ const ItemGroupMatcher = () => {
           ))}
         </div>
 
-        {/* Left Side: Matching Groups (Now on the Right) */}
+        {/* Left Side: Matching Groups */}
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold mb-2">Matching Groups</h2>
+          <h2 className="text-xl font-semibold mb-2 text-green-300">Matching Groups</h2>
           {matchingGroups.length > 0 ? (
             <div className="space-y-4">
               {matchingGroups.map((result) => (
-                <div key={result.group.id} className="border rounded-lg p-3 bg-white shadow-md">
-                  <h3 className="text-lg font-medium">{result.group.name}</h3>
-                  <p className="text-sm text-gray-600">
-                    Matched: {result.matchedItems.map(renderItem).join(', ')}
-                  </p>
-                  <p className="text-sm text-red-600">
-                    Missing: {result.missingItems.map(renderItem).join(', ')}
-                  </p>
-                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                <div key={result.group.id} className="border border-gray-700 rounded-lg p-3 bg-gray-800 shadow-md">
+                  <h3 className="text-lg font-medium text-white">{result.group.name}</h3>
+                  <p className="text-sm text-gray-400">Matched: {result.matchedItems.join(', ')}</p>
+                  <p className="text-sm text-red-400">Missing: {result.missingItems.join(', ')}</p>
+                  <span className="text-xs bg-blue-900 text-blue-300 px-2 py-1 rounded">
                     {result.matchPercentage.toFixed(0)}% Complete
                   </span>
                 </div>
