@@ -8,26 +8,46 @@ const ItemGroupMatcher = () => {
   ];
 
   const [groups, setGroups] = React.useState(initialGroups);
-  const [inputItems, setInputItems] = React.useState('');
+  const [selectedItems, setSelectedItems] = React.useState([]);
   const [matchingGroups, setMatchingGroups] = React.useState([]);
   const [newGroupName, setNewGroupName] = React.useState('');
   const [newGroupItems, setNewGroupItems] = React.useState('');
 
-  // Find which groups contain the input items
+  // Get unique items from all groups
+  const getAllUniqueItems = () => {
+    const allItems = new Set();
+    groups.forEach(group => {
+      group.items.forEach(item => {
+        allItems.add(item);
+      });
+    });
+    return Array.from(allItems).sort();
+  };
+
+  const allItems = getAllUniqueItems();
+
+  // Toggle selected item
+  const toggleItem = (item) => {
+    if (selectedItems.includes(item)) {
+      setSelectedItems(selectedItems.filter(i => i !== item));
+    } else {
+      setSelectedItems([...selectedItems, item]);
+    }
+  };
+
+  // Find which groups contain the selected items
   const findMatchingGroups = () => {
-    const items = inputItems.split(',').map(item => item.trim()).filter(item => item !== '');
-    
-    if (items.length === 0) return;
+    if (selectedItems.length === 0) return;
     
     const results = groups.map(group => {
-      const matchedItems = items.filter(item => 
+      const matchedItems = selectedItems.filter(item => 
         group.items.some(groupItem => 
           groupItem.toLowerCase() === item.toLowerCase()
         )
       );
       
       const missingItems = group.items.filter(groupItem => 
-        !items.some(item => 
+        !selectedItems.some(item => 
           item.toLowerCase() === groupItem.toLowerCase()
         )
       );
@@ -72,23 +92,40 @@ const ItemGroupMatcher = () => {
     <div className="p-4 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold mb-6">Item Group Matcher</h1>
       
-      {/* Input section */}
+      {/* Item selection section */}
       <div className="mb-8 p-4 bg-gray-50 rounded-lg">
-        <h2 className="text-xl font-semibold mb-2">Enter Items You Have</h2>
-        <div className="flex gap-2">
-          <textarea
-            className="border rounded p-2 flex-grow"
-            placeholder="Enter items separated by commas (e.g., Eggs, Flour, Sugar)"
-            value={inputItems}
-            onChange={(e) => setInputItems(e.target.value)}
-            rows={2}
-          />
-          <button
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-            onClick={findMatchingGroups}
-          >
-            Find Matches
-          </button>
+        <h2 className="text-xl font-semibold mb-2">Select Items You Have</h2>
+        <div className="mb-4">
+          <div className="flex flex-wrap gap-2 mb-4">
+            {allItems.map((item) => (
+              <button
+                key={item}
+                className={`px-3 py-1 rounded-full text-sm ${
+                  selectedItems.includes(item)
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-200 text-gray-800'
+                }`}
+                onClick={() => toggleItem(item)}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+          <div className="mt-2">
+            <p className="text-sm font-medium">Selected Items ({selectedItems.length}):</p>
+            <p className="text-sm text-gray-600">
+              {selectedItems.length > 0 ? selectedItems.join(', ') : 'No items selected'}
+            </p>
+          </div>
+          <div className="mt-4">
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              onClick={findMatchingGroups}
+              disabled={selectedItems.length === 0}
+            >
+              Find Matches
+            </button>
+          </div>
         </div>
       </div>
       
